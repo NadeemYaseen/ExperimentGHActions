@@ -1,0 +1,28 @@
+name: Releases
+
+on: 
+  push:
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v4
+    
+    - name: Create Release
+      if: ${{ github.ref == 'refs/heads/main' }}
+      uses: ncipollo/release-action@v1.14.0      
+      with:
+        name: RaptorBuild-${{ github.sha }}
+        tag: ${{ github.sha }}
+        commit: ${{ github.sha }}
+        draft: false
+        artifacts: README.md
+        token: ${{ secrets.UPLOAD }}
+        allowUpdates: true
+        owner: os-fpga
+        repo: RaptorBuilds

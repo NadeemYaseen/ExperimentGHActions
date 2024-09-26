@@ -20,6 +20,5 @@ jobs:
         repo: RaptorBuilds
         owner: os-fpga
         token: ${{ secrets.UPLOAD }}
-        name: RaptorBuild-${{ github.sha }}
         tag_name: ${{ github.sha }}
         release_name: build_${{ github.sha }}

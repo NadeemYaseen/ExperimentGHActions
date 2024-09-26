@@ -15,14 +15,11 @@ jobs:
     
     - name: Create Release
       if: ${{ github.ref == 'refs/heads/main' }}
-      uses: ncipollo/release-action@v1.14.0      
+      uses: NadeemYaseen/createTagRelease@main     
       with:
-        name: RaptorBuild-${{ github.sha }}
-        tag: ${{ github.sha }}
-        commit: ${{ github.sha }}
-        draft: false
-        artifacts: README.md
-        token: ${{ secrets.UPLOAD }}
-        allowUpdates: true
-        owner: os-fpga
         repo: RaptorBuilds
+        owner: os-fpga
+        token: ${{ secrets.UPLOAD }}
+        name: RaptorBuild-${{ github.sha }}
+        tag_name: ${{ github.sha }}
+        release_name: build_${{ github.sha }}
